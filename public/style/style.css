@@ -5,6 +5,10 @@
   --background: #252324;
   --dark: #151314;
   --secondary: pink;
+  --error: #bf616a;
+  --error-bg: #432F31;
+  --success: #a3be8c;
+  --success-bg: #3D4138;
 }
 
 html {
@@ -15,4 +19,102 @@ html {
 body {
   background-color: var(--background);
   color: white;
+}
+
+.success-message {
+  color: var(--success);
+  background-color: var(--success-bg);
+  border-top: 2px solid var(--success);
+  border-bottom: 2px solid var(--success);
+  padding: 1em;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.success-message:before, .success-message:after {
+  height: 2px;
+  width: 100%;
+  background-color: var(--success);
+}
+
+
+.error-message {
+  color: var(--error);
+  background-color: var(--error-bg);
+  border-top: 2px solid var(--error);
+  border-bottom: 2px solid var(--error);
+  padding: 1em;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.error-message:before, .error-message:after {
+  height: 2px;
+  width: 100%;
+  background-color: var(--error);
+}
+
+.title {
+  font-size: 2em;
+  text-align: center;
+  padding: .5em;
+  letter-spacing: -0.05em;
+  line-height: 1.4;
+}
+
+.title__description {
+  display: block;
+  font-size: .75em;
+  letter-spacing: 0;
+  padding: 0;
+}
+
+.btn {
+  background: none;
+  color: inherit;
+  font: inherit;
+  outline: inherit;
+
+  display: inline-block;
+  border-radius: 1em;
+  padding: .3em .5em;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.form {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.form__input {
+  background: none;
+  color: inherit;
+  font: inherit;
+  outline: inherit;
+
+  display: inline-block;
+  border-radius: 1em;
+  padding: .3em .5em;
+  border: 2px solid white;
+}
+
+.form__input::placeholder {
+  color: var(--primary);
+}
+
+.box {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+  margin: 1em 0;
+  padding: 0 1em;
+}
+
+.text--highlighted {
+  color: var(--secondary);
+  font-size: 1.3rem;
+  text-align: center;
 }

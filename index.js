@@ -27,7 +27,7 @@ if (!fs.existsSync("./data")) {
 function isValidURL(str) {
   const pattern = /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/;
   const regex = new RegExp(pattern);
-  return regex.test(str);
+  return regex.test(str) && !str.includes("lnk.moe");
 }
 
 function generateUniqueKey(url, hashLength = 6) {
@@ -88,7 +88,7 @@ app.post("/", (req, res) => {
   const url = req.body.url;
 
   if (!isValidURL(url)) {
-    return res.status(400).render("error", { errorCode: 400, errorMessage: "Invalid URL" });
+    return res.render("index", { successMessage: null, errorMessage: "Invalid URL" });
   }
 
   generateUniqueKey(url)
