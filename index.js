@@ -20,8 +20,8 @@ db.serialize(() => {
   );
 });
 
-if (!fs.exists("./data")) {
-  fs.mkdir("./data");
+if (!fs.existsSync("./data")) {
+  fs.mkdirSync("./data");
 }
 
 function isValidURL(str) {
