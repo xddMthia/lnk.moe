@@ -84,6 +84,11 @@ app.get("/:key", (req, res) => {
   });
 });
 
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain");
+  res.send("User-agent: *\nDisallow: / \nAllow: /$");
+});
+
 app.post("/", (req, res) => {
   const url = req.body.url;
 
