@@ -67,6 +67,11 @@ app.get("/", (req, res) => {
   res.render("index", { successMessage: null, errorMessage: null });
 });
 
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain");
+  res.send("User-agent: *\nDisallow: / \nAllow: /$");
+});
+
 app.get("/:key", (req, res) => {
   const key = req.params.key;
 
@@ -82,11 +87,6 @@ app.get("/:key", (req, res) => {
       res.status(404).render("error", { errorCode: 404, errorMessage: "URL Not Found" });
     }
   });
-});
-
-app.get("/robots.txt", (req, res) => {
-  res.type("text/plain");
-  res.send("User-agent: *\nDisallow: / \nAllow: /$");
 });
 
 app.post("/", (req, res) => {
