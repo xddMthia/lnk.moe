@@ -27,8 +27,9 @@
     <% } %>
 
     <form method="post" class="form">
-        <input class="form__input" type="text" name="url" placeholder="Enter the URL here" required>
+        <input id="urlInput" class="form__input" type="text" name="url" placeholder="Enter the URL here" required>
         <button type="submit" class="btn">Shorten</button>
+        <span id="urlLength" class="text--highlighted"></span>
     </form>
 </body>
 </html>

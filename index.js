@@ -92,6 +92,10 @@ app.get("/:key", (req, res) => {
 app.post("/", (req, res) => {
   const url = req.body.url;
 
+  if (url.length > 1024) {
+    return res.status(413).render("error", { errorCode: 413, errorMessage: "Request Entity Too Large" })
+  }
+
   if (!isValidURL(url)) {
     return res.render("index", { successMessage: null, errorMessage: "Invalid URL" });
   }
