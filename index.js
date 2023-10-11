@@ -18,6 +18,17 @@ db.serialize(() => {
       }
     }
   );
+
+  db.run(
+    "CREATE TABLE IF NOT EXISTS stats (key TEXT PRIMARY KEY, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, visit_count INTEGER DEFAULT 0)",
+    (err) => {
+      if (err) {
+        console.error("Error creating 'stats' table:", err);
+      } else {
+        console.log("Database table 'stats' created or already exists.");
+      }
+    }
+  );
 });
 
 if (!fs.existsSync("./data")) {
@@ -51,7 +62,13 @@ function generateUniqueKey(url, hashLength = 6) {
           if (err) {
             reject(err);
           } else {
-            resolve(hash);
+            db.run("INSERT INTO stats (key) VALUES (?)", [hash], (err) => {
+              if (err) {
+                reject(err);
+              } else {
+                resolve(hash);
+              }
+            });
           }
         });
       }
@@ -83,6 +100,13 @@ app.get("/:key", (req, res) => {
 
     if (row) {
       res.redirect(row.url);
+
+      db.run("UPDATE stats SET timestamp = CURRENT_TIMESTAMP, visit_count = visit_count + 1 WHERE key = ?", [key], (err) => {
+        if (err) {
+          console.error("Error updating visit stats:", err);
+          return res.status(500).render("error", { errorCode: 500, errorMessage: "Internal Server Error" });
+        }
+      });
     } else {
       res.status(404).render("error", { errorCode: 404, errorMessage: "URL Not Found" });
     }
