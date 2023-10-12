@@ -1,17 +1,25 @@
 {
-  "name": "lnk",
+  "name": "lnk.moe",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xddMthia/lnk.moe.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xddMthia/lnk.moe/issues"
+  },
+  "homepage": "https://github.com/xddMthia/lnk.moe#readme",
   "dependencies": {
-    "crypto": "^1.0.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
     "sqlite3": "^5.1.6"
   }
 }

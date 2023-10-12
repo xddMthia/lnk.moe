@@ -1,35 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/style/main.css">
-  <script src="/js/index.js"></script>
-  <title>lnk.moe</title>
-</head>
-<body>
-    <h1 class="title">URL Shortener<span class="title__description">lnk.moe</span></h1>
-    
-    <% if (successMessage) { %>
-      <div>
-        <p class="success-message"><%= successMessage %></p>
-        <div class="box">
-          <p>Shortened URL: <span class="text--highlighted" id="url"><%= shortUrl %></span></p>
-          <p id="copy" class="btn">Copy</p>
-        </div>
-      </div>
-    <% } %>
+<% page = "Home" %>
 
-    <% if (errorMessage) { %>
-      <div class="error-message">
-        <p><%= errorMessage %></p>
-      </div>
-    <% } %>
+<h1 class="title">URL Shortener<span class="title__description">lnk.moe</span></h1>
 
-    <form method="post" class="form">
-        <input id="urlInput" class="form__input" type="text" name="url" placeholder="Enter the URL here" required>
-        <button type="submit" class="btn">Shorten</button>
-        <span id="urlLength" class="text--highlighted"></span>
-    </form>
-</body>
-</html>
+<% if (successMessage) { %>
+  <div>
+    <p class="success-message"><%= successMessage %></p>
+    <div class="box">
+      <p>Shortened URL: <span class="text--highlighted" id="url"><%= shortUrl %></span></p>
+      <p id="copy" class="btn">Copy</p>
+    </div>
+  </div>
+<% } %>
+
+<% if (errorMessage) { %>
+  <div class="error-message">
+    <p><%= errorMessage %></p>
+  </div>
+<% } %>
+
+<form method="post" class="form">
+  <input id="urlInput" class="form__input" type="text" name="url" placeholder="Enter the URL here" required>
+  <button type="submit" class="btn">Shorten</button>
+  <span id="urlLength" class="text--highlighted"></span>
+</form>
+
+<script src="/scripts/index.js"></script>

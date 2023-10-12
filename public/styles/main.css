@@ -9,6 +9,8 @@
   --error-bg: #432F31;
   --success: #a3be8c;
   --success-bg: #3D4138;
+  --info: #b48ead;
+  --info-bg: #41373E;
 }
 
 html {
@@ -117,4 +119,32 @@ body {
   color: var(--secondary);
   font-size: 1.3rem;
   text-align: center;
+}
+
+.navbar {
+  color: var(--info);
+  background-color: var(--info-bg);
+  border-top: 2px solid var(--info);
+  border-bottom: 2px solid var(--info);
+  padding: 1em;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.navbar:before, .navbar:after {
+  height: 2px;
+  width: 100%;
+  background-color: var(--info);
+}
+
+.navbar__item {
+  padding: 1em 1.5em;
+  color: var(--info);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.navbar__item:hover {
+  background-color: var(--info);
+  color: var(--info-bg);
 }
