@@ -5,8 +5,7 @@ const config = require(path.join(__dirname, "..", "config"));
 
 function isValidURL(str) {
   const pattern = /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/;
-  const regex = new RegExp(pattern);
-  return regex.test(str) && !str.includes(config.siteURL);
+  return pattern.test(str) && !str.includes(config.siteURL);
 }
 
 function generateUniqueKey(url, hashLength = 6) {

@@ -11,6 +11,11 @@ router.get("/", (req, res) => {
 
 router.get("/:key", (req, res) => {
   const key = req.params.key;
+  const keyPattern = /^[0-9a-fA-F]+$/;
+  
+  if (!keyPattern.test(key)) {
+    return res.status(400).render("error", { errorCode: 400, errorMessage: "Invalid URL Format", site: config.siteURL });
+  }
 
   db.get("SELECT url FROM urls WHERE key = ?", [key], (err, row) => {
     if (err) {
