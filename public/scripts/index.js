@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const url = document.getElementById("url");
   const urlInput = document.getElementById("urlInput");
   const urlLength = document.getElementById("urlLength");
+  const arrows = document.getElementsByClassName("arrow");
 
   if (copyButton !== null) {
     copyButton.addEventListener("click", () => {
@@ -40,5 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
         urlLength.textContent = "";
       }
     });
+  }
+
+  if (arrows !== null) {
+    for (arrow of arrows) {
+      arrow.addEventListener("click", () => {
+        arrow.classList.toggle("enable");
+      });
+    }
   }
 });

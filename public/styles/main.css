@@ -86,8 +86,10 @@ body {
 
 .form {
   text-align: center;
-  margin: 0 auto;
-  max-width: 960px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5em;
 }
 
 .form__input {
@@ -147,4 +149,38 @@ body {
 .navbar__item:hover {
   background-color: var(--info);
   color: var(--info-bg);
+}
+
+.arrow {
+  width: 2em;
+  height: 2em;
+  position: relative;
+  cursor: pointer;
+}
+
+.arrow-line {
+  position: absolute;
+  width: 3px;
+  height: 1em;
+  background-color: white;
+  inset: 0;
+  transition: all ease-in-out .2s;
+}
+
+.arrow-line:nth-child(1) {
+  transform-origin: center;
+  transform: translateX(655%) translateY(50%) rotate(45deg);
+}
+
+.arrow-line:nth-child(2) {
+  transform-origin: center;
+  transform: translateX(345%) translateY(50%) rotate(-45deg);
+}
+
+.arrow.enable .arrow-line:nth-child(1) {
+  transform: translateX(655%) translateY(50%) rotate(-45deg);
+}
+
+.arrow.enable .arrow-line:nth-child(2) {
+  transform: translateX(345%) translateY(50%) rotate(45deg);
 }

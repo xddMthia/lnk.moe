@@ -19,9 +19,13 @@
 <% } %>
 
 <form method="post" class="form">
+  <span id="urlLength" class="text--highlighted"></span>
   <input id="urlInput" class="form__input" type="text" name="url" placeholder="Enter the URL here" required>
   <button type="submit" class="btn">Shorten</button>
-  <span id="urlLength" class="text--highlighted"></span>
+  <div class="arrow">
+    <span class="arrow-line"></span>
+    <span class="arrow-line"></span>
+  </div>
 </form>
 
 <script src="/scripts/index.js"></script>
