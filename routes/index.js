@@ -40,6 +40,10 @@ router.get("/:key", (req, res) => {
 
 router.post("/", (req, res) => {
   const url = req.body.url;
+  const customUrl = req.body.customUrl;
+  const useCustomUrl = req.body.useCustomUrl;
+  const customUrlVisits = req.body.customUrlVisits;
+  const useCustomUrlVisits = req.body.useCustomUrlVisits;
 
   if (url.length > 1024) {
     return res.status(413).render("error", { errorCode: 413, errorMessage: "Request Entity Too Large", site: config.siteURL })

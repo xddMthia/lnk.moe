@@ -84,12 +84,12 @@ body {
   border: 2px solid white;
 }
 
-.form {
-  text-align: center;
+.form-main {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: .5em;
+  text-align: center;
 }
 
 .form__input {
@@ -102,10 +102,16 @@ body {
   border-radius: 1em;
   padding: .3em .5em;
   border: 2px solid white;
+  text-align: center;
+}
+
+.form__input--secondary {
+  border: 2px solid var(--info-bg);
 }
 
 .form__input::placeholder {
   color: var(--primary);
+  text-align: center;
 }
 
 .box {
@@ -183,4 +189,66 @@ body {
 
 .arrow.enable .arrow-line:nth-child(2) {
   transform: translateX(345%) translateY(50%) rotate(45deg);
+}
+
+.arrow-menu {
+  margin-top: 1em;
+  opacity: 0;
+  transition: all ease-in-out .2s;
+  user-select: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5em;
+}
+
+.arrow-menu.enable {
+  opacity: 1;
+}
+
+.checkbox-input.enable {
+  border: 2px solid var(--info);
+  color: white;
+}
+
+.checkbox-input {
+  color: var(--primary);
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+}
+
+.checkbox {
+  background-color: black;
+  width: 2em;
+  height: 1em;
+  border-radius: 1em;
+  position: relative;
+}
+
+.checkbox:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  background-color: var(--error);
+  border-radius: 1em;
+  transition: all ease-in-out .2s;
+}
+
+.checkbox.enable:before {
+  background-color: var(--success);
+  transform: translateX(100%);
+}
+
+.highlight-line {
+  height: 2px;
+  background-color: var(--info);
+  width: min(40em, 100vw);
+  margin: 1em;
 }

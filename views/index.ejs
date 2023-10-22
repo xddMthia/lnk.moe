@@ -10,6 +10,9 @@
       <p id="copy" class="btn">Copy</p>
     </div>
   </div>
+  <script>
+    localStorage.clear();
+  </script>
 <% } %>
 
 <% if (errorMessage) { %>
@@ -19,12 +22,28 @@
 <% } %>
 
 <form method="post" class="form">
-  <span id="urlLength" class="text--highlighted"></span>
-  <input id="urlInput" class="form__input" type="text" name="url" placeholder="Enter the URL here" required>
-  <button type="submit" class="btn">Shorten</button>
-  <div class="arrow">
-    <span class="arrow-line"></span>
-    <span class="arrow-line"></span>
+  <div class="form-main">
+    <span id="urlLength" class="text--highlighted"></span>
+    <input id="urlInput" class="form__input" type="text" name="url" placeholder="Enter the URL here" required>
+    <button type="submit" class="btn">Shorten</button>
+    <div id="arrow" class="arrow">
+      <span class="arrow-line"></span>
+      <span class="arrow-line"></span>
+    </div>
+  </div>
+  <div id="arrow-menu" class="arrow-menu">
+    <span class="highlight-line"></span>
+    <div class="checkbox-wrapper" id="useCustomUrlWrapper">
+      <p>Use Custom URL?</p><span class="checkbox" id="useCustomUrl"></span>
+    </div>
+    <input id="customUrl" class="form__input form__input--secondary checkbox-input" placeholder="/customurlhere" type="text">
+    <div class="checkbox-wrapper" id="useCustomVisitsWrapper">
+      <p>Remove After N Visits?</p><span class="checkbox" id="useCustomVisits"></span>
+    </div>
+    <input id="customVisits" class="form__input form__input--secondary checkbox-input" type="number" placeholder="0" min="1">
+    
+    <input type="hidden" name="useCustomUrl" id="useCustomUrlInput" value="false">
+    <input type="hidden" name="useCustomVisits" id="useCustomVisitsInput" value="false">
   </div>
 </form>
 
