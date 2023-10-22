@@ -59,11 +59,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (useCustomUrlWrapper !== null && useCustomUrl !== null && customUrl !== null) {
-    useCustomUrlWrapper.addEventListener("click", () => {
+    useCustomUrlWrapper.addEventListener("mousedown", () => {
       useCustomUrl.classList.toggle("enable");
       customUrl.classList.toggle("enable");
 
       document.getElementById("useCustomUrlInput").value = useCustomUrl.classList.contains("enable") ? "true" : "false";
+    });
+
+    useCustomUrlWrapper.addEventListener("click", () => {
+      if (customUrl.classList.contains("enable")) customUrl.focus();
     });
 
     customUrl.addEventListener("focusin", () => {
@@ -84,11 +88,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (useCustomVisitsWrapper !== null && useCustomVisits !== null && customVisits !== null) {
-    useCustomVisitsWrapper.addEventListener("click", () => {
+    useCustomVisitsWrapper.addEventListener("mousedown", () => {
       useCustomVisits.classList.toggle("enable");
       customVisits.classList.toggle("enable");
 
       document.getElementById("useCustomVisitsInput").value = useCustomVisits.classList.contains("enable") ? "true" : "false";
+    });
+
+    useCustomVisitsWrapper.addEventListener("click", () => {
+      if (customVisits.classList.contains("enable")) customVisits.focus();
     });
 
     customVisits.addEventListener("focusin", () => {
