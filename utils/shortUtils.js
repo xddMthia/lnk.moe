@@ -3,6 +3,15 @@ const path = require("path");
 const db = require(path.join(__dirname, "..", "db", "db"));
 const config = require(path.join(__dirname, "..", "config"));
 
+class CustomError extends Error {
+  constructor(message, statusCode) {
+    super(message);
+    this.name = this.constructor.name;
+    this.statusCode = statusCode;
+  }
+}
+
+
 function isValidURL(str) {
   const pattern = /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/;
   return pattern.test(str) && !str.includes(config.siteURL);
@@ -19,7 +28,7 @@ function generateUniqueKey(url, useCustomUrl, customUrl, useCustomVisits, custom
         if (row.url === customUrl) {
           resolve(hash);
         } else {
-          reject("Custom URL Already In Use");
+          reject(new CustomError("Custom URL Already In Use", 409));
         }
       } else if (row) {
         if (row.url === url) {
