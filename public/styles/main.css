@@ -252,3 +252,16 @@ body {
   width: min(40em, 100vw);
   margin: 1em;
 }
+
+.text--absolute {
+  position: absolute;
+  text-align: left;
+  transform: translateX(calc(-100% - .5em));
+  font-size: .75rem;
+}
+
+.text--absolute-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}

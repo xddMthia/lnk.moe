@@ -23,8 +23,10 @@
 
 <form method="post" class="form">
   <div class="form-main">
-    <span id="urlLength" class="text--highlighted"></span>
-    <input id="urlInput" class="form__input" type="text" name="url" autocomplete="off" placeholder="Enter the URL here" required>
+    <div class="text--absolute-wrapper">
+      <span id="urlLength" class="text--highlighted text--absolute"></span>
+      <input id="urlInput" class="form__input" type="text" name="url" autocomplete="off" placeholder="Enter the URL here" required>
+    </div>
     <button type="submit" class="btn">Shorten</button>
     <div id="arrow" class="arrow">
       <span class="arrow-line"></span>
@@ -36,11 +38,14 @@
     <div class="checkbox-wrapper" id="useCustomUrlWrapper">
       <p>Use Custom URL?</p><span class="checkbox" id="useCustomUrl"></span>
     </div>
-    <input id="customUrl" class="form__input form__input--secondary checkbox-input" autocomplete="off" placeholder="/customurlhere" type="text">
+    <div class="text--absolute-wrapper">
+      <span id="customUrlLength" class="text--highlighted text--absolute"></span>
+      <input name="customUrl" id="customUrl" class="form__input form__input--secondary checkbox-input" autocomplete="off" placeholder="/customurlhere" type="text">
+    </div>
     <div class="checkbox-wrapper" id="useCustomVisitsWrapper">
       <p>Remove After N Visits?</p><span class="checkbox" id="useCustomVisits"></span>
     </div>
-    <input id="customVisits" class="form__input form__input--secondary checkbox-input" autocomplete="off" type="number" placeholder="0" min="1">
+    <input name="customVisits" id="customVisits" class="form__input form__input--secondary checkbox-input" autocomplete="off" type="number" placeholder="0" min="1">
 
     <input type="hidden" name="useCustomUrl" id="useCustomUrlInput" value="false">
     <input type="hidden" name="useCustomVisits" id="useCustomVisitsInput" value="false">

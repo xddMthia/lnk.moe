@@ -24,14 +24,25 @@ router.get("/:key", (req, res) => {
     }
 
     if (row) {
-      res.redirect(row.url);
-
       db.run("UPDATE stats SET timestamp = CURRENT_TIMESTAMP, visit_count = visit_count + 1 WHERE key = ?", [key], (err) => {
         if (err) {
           console.error("Error updating visit stats:", err);
           return res.status(500).render("error", { errorCode: 500, errorMessage: "Internal Server Error", site: config.siteURL });
         }
       });
+
+      db.get("SELECT url FROM stats WHERE key = ?", [key], (err, row) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).render("error", { errorCode: 500, errorMessage: "Internal Server Error", site: config.siteURL });
+        }
+
+        if (row) {
+          // visits > max visits
+        }
+      });
+
+      res.redirect(row.url);
     } else {
       res.status(404).render("error", { errorCode: 404, errorMessage: "URL Not Found", site: config.siteURL });
     }
@@ -41,9 +52,19 @@ router.get("/:key", (req, res) => {
 router.post("/", (req, res) => {
   const url = req.body.url;
   const customUrl = req.body.customUrl;
-  const useCustomUrl = req.body.useCustomUrl;
-  const customUrlVisits = req.body.customUrlVisits;
-  const useCustomUrlVisits = req.body.useCustomUrlVisits;
+  const useCustomUrl = req.body.useCustomUrl == "true";
+  const customVisits = req.body.customVisits;
+  const useCustomVisits = req.body.useCustomVisits == "true";
+
+  console.log(useCustomUrl, customUrl, useCustomVisits, customVisits);
+  console.log(typeof(useCustomUrl), typeof(customUrl), typeof(useCustomVisits), typeof(customVisits));
+  if (useCustomUrl && customUrl.length > 128) {
+    return res.status(413).render("error", { errorCode: 413, errorMessage: "Request Entity Too Large", site: config.siteURL })
+  }
+
+  if (useCustomVisits && parseInt(customVisits) < 1) {
+    return res.render("index", { successMessage: null, errorMessage: "Invalid Custom Visits", site: config.siteURL });
+  }
 
   if (url.length > 1024) {
     return res.status(413).render("error", { errorCode: 413, errorMessage: "Request Entity Too Large", site: config.siteURL })
@@ -53,7 +74,7 @@ router.post("/", (req, res) => {
     return res.render("index", { successMessage: null, errorMessage: "Invalid URL", site: config.siteURL });
   }
 
-  generateUniqueKey(url)
+  generateUniqueKey(url, useCustomUrl, customUrl, useCustomVisits, customVisits)
     .then((key) => {
       res.render("index", { successMessage: "URL shortened successfully", shortUrl: `https://${config.siteURL}/${key}`, errorMessage: null, site: config.siteURL });
     })

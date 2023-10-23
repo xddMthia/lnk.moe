@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const customUrl = document.getElementById("customUrl");
   const useCustomUrl = document.getElementById("useCustomUrl");
   const useCustomUrlWrapper = document.getElementById("useCustomUrlWrapper");
+  const customUrlLength = document.getElementById("customUrlLength");
   const customVisits = document.getElementById("customVisits");
   const useCustomVisits = document.getElementById("useCustomVisits");
   const useCustomVisitsWrapper = document.getElementById("useCustomVisitsWrapper");
@@ -47,6 +48,19 @@ document.addEventListener("DOMContentLoaded", () => {
         urlLength.textContent = remainingCharacters;
       } else {
         urlLength.textContent = "";
+      }
+    });
+  }
+
+  if (customUrl !== null && customUrlLength !== null) {
+    customUrl.addEventListener("input", () => {
+      const currentLength = customUrl.value.length;
+      const remainingCharacters = 128 - currentLength;
+  
+      if (remainingCharacters < 25) {
+        customUrlLength.textContent = remainingCharacters;
+      } else {
+        customUrlLength.textContent = "";
       }
     });
   }

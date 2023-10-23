@@ -17,7 +17,7 @@ db.serialize(() => {
   );
 
   db.run(
-    "CREATE TABLE IF NOT EXISTS stats (key TEXT PRIMARY KEY, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, visit_count INTEGER DEFAULT 0)",
+    "CREATE TABLE IF NOT EXISTS stats (key TEXT PRIMARY KEY, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, visit_count INTEGER DEFAULT 0, max_visits INTEGER DEFAULT 0)",
     (err) => {
       if (err) {
         console.error("Error creating 'stats' table:", err);
